@@ -54,3 +54,28 @@ public class Habitacion {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    // Método para mostrar información de la habitación
+    public void mostrarInfo() {
+        System.out.println("Habitación #" + numero);
+        System.out.println("Tipo: " + tipo);
+        System.out.println("Precio: $" + precio);
+        System.out.println("Estado: " + (disponible ? "Disponible" : "Ocupada"));
+        System.out.println("------------------------");
+    }
+
+    // Método toString (Polimorfismo - sobrescritura)
+    @Override
+    public String toString() {
+        return "Habitación " + numero + " (" + tipo + ") - $" + precio;
+    }
+}
