@@ -1,67 +1,40 @@
-import java.util.ArrayList;
+// Método para consultar disponibilidad de habitaciones (agregado por Paola)
+public void consultarDisponibilidad() {
+    System.out.println("\n=== DISPONIBILIDAD DE HABITACIONES ===");
 
-/**
- * Clase Hotel - Gestiona las habitaciones y reservas del hotel
- * @author Erick Mero
- */
-public class Hotel {
-    // Atributos (Encapsulación - privados)
-    private String nombre;
-    private ArrayList<Habitacion> habitaciones;
-    private ArrayList<Reserva> reservas;
+    int disponibles = 0;
+    int ocupadas = 0;
 
-    // Constructor
-    public Hotel(String nombre) {
-        this.nombre = nombre;
-        this.habitaciones = new ArrayList<>();
-        this.reservas = new ArrayList<>();
-        inicializarHabitaciones();
-    }
-
-    // Método para inicializar algunas habitaciones de ejemplo
-    private void inicializarHabitaciones() {
-        // Creamos 10 habitaciones de ejemplo
-        for (int i = 1; i <= 10; i++) {
-            habitaciones.add(new Habitacion(i));
+    for (Habitacion hab : habitaciones) {
+        if (hab.isDisponible()) {
+            disponibles++;
+            System.out.println("✓ " + hab.toString() + " - DISPONIBLE");
+        } else {
+            ocupadas++;
         }
     }
 
-    // Getters y Setters (Encapsulación)
-    public String getNombre() {
-        return nombre;
-    }
+    System.out.println("\n--- RESUMEN ---");
+    System.out.println("Habitaciones disponibles: " + disponibles);
+    System.out.println("Habitaciones ocupadas: " + ocupadas);
+    System.out.println("Total de habitaciones: " + habitaciones.size());
+    System.out.println("=====================================\n");
+}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+// Método para mostrar solo habitaciones disponibles (agregado por Paola)
+public void mostrarHabitacionesDisponibles() {
+    System.out.println("\n=== HABITACIONES DISPONIBLES ===");
+    boolean hayDisponibles = false;
 
-    public ArrayList<Habitacion> getHabitaciones() {
-        return habitaciones;
-    }
-
-    public ArrayList<Reserva> getReservas() {
-        return reservas;
-    }
-
-    // Método para agregar una habitación
-    public void agregarHabitacion(Habitacion habitacion) {
-        habitaciones.add(habitacion);
-    }
-
-    // Método para mostrar información del hotel
-    public void mostrarInfo() {
-        System.out.println("=== HOTEL " + nombre.toUpperCase() + " ===");
-        System.out.println("Total de habitaciones: " + habitaciones.size());
-        System.out.println("Total de reservas: " + reservas.size());
-    }
-
-    // Método para buscar habitación por número (agregado por Paola)
-    public Habitacion buscarHabitacion(int numero) {
-        for (Habitacion hab : habitaciones) {
-            if (hab.getNumero() == numero) {
-                return hab;
-            }
+    for (Habitacion hab : habitaciones) {
+        if (hab.isDisponible()) {
+            hab.mostrarInfo();
+            hayDisponibles = true;
         }
-        return null;
     }
+
+    if (!hayDisponibles) {
+        System.out.println("No hay habitaciones disponibles en este momento.");
+    }
+    System.out.println("================================\n");
 }
