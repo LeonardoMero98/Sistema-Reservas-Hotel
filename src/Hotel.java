@@ -54,4 +54,14 @@ public class Hotel {
         System.out.println("Total de habitaciones: " + habitaciones.size());
         System.out.println("Total de reservas: " + reservas.size());
     }
+
+    // Método para buscar habitación por número (agregado por Paola)
+    public Habitacion buscarHabitacion(int numero) {
+        for (Habitacion hab : habitaciones) {
+            if (hab.getNumero() == numero) {
+                return hab;
+            }
+        }
+        return null;
+    }
 }
